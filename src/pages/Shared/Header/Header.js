@@ -12,10 +12,12 @@ const Header = () => {
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
                 <Container>
-                    <Navbar.Brand href="/">
-                        <img src="/" alt="logo" />
+                    <Link className='text-decoration-none text-dark fs-5 mt-1' to='/'>
+                        <img
+                            style={{ height: '40px' }}
+                            src="./eduPlaner.png" alt="logo" />
                         Edu Planer BD
-                    </Navbar.Brand>
+                    </Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
