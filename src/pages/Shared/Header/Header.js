@@ -12,7 +12,7 @@ const Header = () => {
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
                 <Container>
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="/">
                         <img src="/" alt="logo" />
                         Edu Planer BD
                     </Navbar.Brand>
