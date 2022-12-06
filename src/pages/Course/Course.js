@@ -8,21 +8,19 @@ const Course = ({ course }) => {
     return (
         <div>
             <Card className="mb-4">
-                <Card.Header className='text-center'>
-                    <Card.Title>{course_title}</Card.Title>
-                </Card.Header>
                 <Card.Body className='pb-1'>
                     <Card.Img variant="top" src={picture} />
-                    <Card.Text className='mt-2'>
-                        <p>{course_description.slice(0, 92)}...</p>
+                    <Card.Text >
+                        <Card.Title className="mt-3">{course_title}</Card.Title>
                     </Card.Text>
-                    <div className='d-flex justify-content-between'>
-                        <p className='mb-0'><b>Instructor: {teacher_name}</b></p>
-                        <p className='text-success'> <b>$ {price}</b></p>
+                    <div className='d-flex justify-content-between '>
+                        <p className=''>Instructor: {teacher_name}</p>
+                        <p className='text-success'> <b>৳{price}90</b></p>
                     </div>
                 </Card.Body>
-                <Link to={`${course.id}`} className='btn btn-success w-50 mx-auto mb-2' >Details..</Link>
+                <Link to={`${course.id}`} className='btn btn btn-outline-success w-50 mx-auto mb-3' >Details..</Link>
             </Card>
+
         </div>
     );
 };

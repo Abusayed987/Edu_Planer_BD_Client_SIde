@@ -25,7 +25,8 @@ export const routes = createBrowserRouter([
                 path: '/courses', element: <Courses></Courses>,
                 loader: async () => {
                     return fetch('https://edu-planer-bd-server-abusayed987.vercel.app/courses')
-                }
+                },
+
             },
 
             {

@@ -1,27 +1,27 @@
 import React from 'react';
 import './courses.css'
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, Outlet, useLoaderData } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Course from '../Course/Course';
+import CourseDetails from '../CourseDetails/CourseDetails';
 
 
 const Courses = () => {
     const courses = useLoaderData()
-    console.log(courses);
+    // console.log(courses);
     return (
-        <Container>
+        <Container className='mt-3'>
             <Row>
                 <Col lg={3}>
-                    <h2>Courses</h2>
+                    <h2 className='mb-3 text-success'>All Courses</h2>
                     {
                         courses.map(course =>
-                            <p >
+                            <p className='btn btn-light' key={course.id}>
                                 <Link
                                     className='text-decoration-none'
-                                    to={`/courses/${course.id}`}
-                                    key={course.id}>
+                                    to={`/courses/${course.id}`}>
                                     {course.course_title}
                                 </Link>
                             </p>
