@@ -14,10 +14,9 @@ const CourseDetails = () => {
 
 
     return (
-        <Card className='w-50 mx-auto mt-4 text-center'>
-
+        <Card className='w-50  mx-auto mt-4 text-center'>
             <div ref={ref}>
-                <Card.Header className='d-flex justify-content-between'>
+                <Card.Header className='d-lg-flex justify-content-between'>
                     <h2 className='text-primary ' >
                         {course_title}
                     </h2>
@@ -32,7 +31,7 @@ const CourseDetails = () => {
                 </Card.Header>
                 <Card.Img variant="top" src={picture} />
                 <Card.Body>
-                    <Card.Title className='d-flex justify-content-between'>
+                    <Card.Title className='d-lg-flex d-md-flex justify-content-between'>
                         <div>
                             Instructor: {teacher_name}
                         </div>
@@ -45,9 +44,17 @@ const CourseDetails = () => {
                             {course_description}
                         </div>
                     </Card.Text>
-                    <div className='d-flex justify-content-between'>
-                        <Link className='btn btn btn-outline-success  mx-auto mb-3' to='/courses'>Back to Courses</Link>
-                        <Link className='btn btn btn-primary  mx-auto mb-3' >Get Premium Access </Link>
+                    <div>
+                        <Link to='/courses'>
+                            <Button variant='outline-success' className='m-3'>
+                                Back to Courses
+                            </Button>
+                        </Link>
+                        <Link to='/courses'>
+                            <Button variant='primary' className='m-3'>
+                                Get Premium Access
+                            </Button>
+                        </Link>
                     </div>
                 </Card.Body>
             </div>

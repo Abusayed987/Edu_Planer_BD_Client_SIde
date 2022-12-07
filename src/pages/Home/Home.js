@@ -4,7 +4,7 @@ import Header from '../Shared/Header/Header';
 import './header.css'
 const Home = () => {
     return (
-        <div className='container d-flex align-items-center'>
+        <div className='container d-lg-flex d-md-flex align-items-center'>
             <div>
                 <h1 className=' heading'>Prepare your <br /> Own learning and start the journey !
                 </h1>
