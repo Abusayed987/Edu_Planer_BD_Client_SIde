@@ -8,6 +8,7 @@ import Faq from "../../pages/Faq/Faq";
 import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
 import NotFound from "../../pages/NotFound/NotFound";
+import PremiumAccess from "../../pages/PremiumAccess/PremiumAccess";
 import Register from "../../pages/Regiater/Register";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -32,18 +33,24 @@ export const routes = createBrowserRouter([
             },
 
             {
-                path: '/courses/:id', element:
-                    <PrivateRoute>
-                        <CourseDetails></CourseDetails>
-                    </PrivateRoute>,
+                path: '/courses/:id', element: <CourseDetails></CourseDetails>,
                 loader: async ({ params }) => {
                     return fetch(`https://edu-planer-bd-server-abusayed987.vercel.app/courses/${params.id}`)
                 }
             },
-
+            {
+                path: '/courses/:id/premium', element:
+                    <PrivateRoute>
+                        <PremiumAccess></PremiumAccess>
+                    </PrivateRoute>,
+                loader: async ({ params }) => {
+                    return fetch(`https://edu-planer-bd-server-abusayed987.vercel.app/courses/${params.id}/premium`)
+                }
+            },
             { path: '/blog', element: <Blog></Blog> },
 
             { path: '/faq', element: <Faq></Faq> },
+
             {
                 path: '*', element: <NotFound></NotFound>
             }

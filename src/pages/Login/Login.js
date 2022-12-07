@@ -6,28 +6,31 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 
 const googleProvider = new GoogleAuthProvider()
+const githubProvider = new GithubAuthProvider()
 
 const Login = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/'
-
     const {
         logInWithEmailAndPass,
         setLoading,
-        googleLogin
+        setUser,
+        googleLogin,
+        githubLogin
     } = useContext(AuthContext)
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
     const handleSubmitLogin = event => {
         event.preventDefault()
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(form, email, password);
+
 
 
         logInWithEmailAndPass(email, password)
@@ -54,7 +57,16 @@ const Login = () => {
         googleLogin(googleProvider)
             .then(result => {
                 const user = result.user;
+                navigate(from, { replace: true })
+            })
+            .catch(error => console.error(error))
+    }
+    const handleGithubLogin = () => {
+        githubLogin(githubProvider)
+            .then(result => {
+                const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true })
             })
             .catch(error => console.error(error))
     }
@@ -92,6 +104,7 @@ const Login = () => {
                     <img width={'30px'} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGjwH1vlzVXAR6VFKNiKyf37qHlN_gLk0w9g&usqp=CAU" alt="" />
                 </Button>
                 <Button variant='outline-secondary'
+                    onClick={handleGithubLogin}
                     className='m-3'>
                     Login with <br />
                     <img width={'30px'} src="https://banner2.cleanpng.com/20180326/eye/kisspng-github-computer-icons-logo-github-5ab8a338143da0.8375508315220498480829.jpg" alt="" />

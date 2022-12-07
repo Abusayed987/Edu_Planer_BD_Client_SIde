@@ -20,6 +20,11 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, provider)
     }
 
+    const githubLogin = (provider) => {
+        setLoading(true)
+        return signInWithPopup(auth, provider)
+    }
+
     const logInWithEmailAndPass = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
@@ -39,7 +44,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (currentUser) => {
             console.log('currentUser: ', currentUser);
-            if (currentUser === null || currentUser.emailVerified) {
+            if (currentUser === null || currentUser.emailVerified || currentUser.photoURL) {
                 setUser(currentUser)
             }
             setLoading(false)
@@ -52,6 +57,7 @@ const AuthProvider = ({ children }) => {
     const authInfo = {
         user,
         googleLogin,
+        githubLogin,
         logout,
         createUser,
         logInWithEmailAndPass,

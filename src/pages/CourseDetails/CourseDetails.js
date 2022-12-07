@@ -50,7 +50,7 @@ const CourseDetails = () => {
                                 Back to Courses
                             </Button>
                         </Link>
-                        <Link to='/courses'>
+                        <Link to='/courses/:id/premium'>
                             <Button variant='primary' className='m-3'>
                                 Get Premium Access
                             </Button>

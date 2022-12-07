@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 import { toast } from 'react-hot-toast';
@@ -46,7 +46,10 @@ const Register = () => {
                 handleEmailVerification();
                 toast.success('Please verify your email address,before login!')
             })
-            .catch((e) => console.error('e: ', e))
+            .catch((e) => {
+                toast.error(e.message)
+                // console.error('e: ', e)
+            })
     }
 
     const handleEmailVerification = () => {
