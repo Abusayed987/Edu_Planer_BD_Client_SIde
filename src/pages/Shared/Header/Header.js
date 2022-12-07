@@ -64,12 +64,12 @@ const Header = () => {
                                 to='/courses'>
                                 Courses
                             </Link>
-                            <Link className='text-decoration-none btn btn-light ms-3'
-                                to='/blog' >Blog</Link>
 
                             <Link className='text-decoration-none btn btn-light ms-3'
                                 to='/faq' >FAQ</Link>
 
+                            <Link className='text-decoration-none btn btn-light ms-3'
+                                to='/blog' >Blog</Link>
                         </Nav>
                         <Nav>
 
