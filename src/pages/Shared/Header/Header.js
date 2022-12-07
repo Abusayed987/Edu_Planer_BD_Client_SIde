@@ -43,6 +43,7 @@ const Header = () => {
                             src="./eduPlaner.png" alt="logo" />
                         Edu Planer BD
                     </Link>
+
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <div onClick={() => handleThemeChange()}>
@@ -72,7 +73,6 @@ const Header = () => {
                         </Nav>
                         <Nav>
 
-
                             {user?.photoURL ?
                                 <>
                                     <OverlayTrigger
@@ -81,7 +81,8 @@ const Header = () => {
                                         overlay={renderTooltip}
                                     >
                                         <img
-                                            style={{ 'height': '45px', 'borderRadius': '50px', 'marginRight': '10px' }}
+                                            className='w-25 mx-auto rounded-circle img-fluid'
+                                            // style={{ 'height': '45px', 'borderRadius': '50px', 'marginRight': '10px' }}
                                             src={user?.photoURL}
                                             alt="img"
                                         />
@@ -105,6 +106,7 @@ const Header = () => {
                                     </Link>
                                 </>
                             }
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

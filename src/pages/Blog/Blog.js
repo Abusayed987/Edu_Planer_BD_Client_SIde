@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blog = () => {
     return (
-        <div className='text-start mt-5'>
+        <div className='text-start mt-5 container'>
             <div className='border rounded m-5 p-3'>
                 <h2><b className='text-info'>Question 01 :</b> What is cors?</h2>
                 <h4 className='m-3'><b>Ans:</b><br />    CORS means Cross-Origin Resource Sharing, it is a Sharing method that the frontend and backend are at two different domains. it's allows you to make requests to the server deployed at a different domain .</h4>
