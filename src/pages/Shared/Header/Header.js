@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -6,8 +7,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
 
+
+const Header = () => {
+    let [theme, setTheme] = useState(true);
+
+    const handleThemeChange = () => {
+        return setTheme(!theme);
+    }
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -20,18 +27,33 @@ const Header = () => {
                     </Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
+                        <div onClick={() => handleThemeChange()}>
+                            {theme
+                                ?
+                                <>
+                                    <Button variant="light"
+                                        className='ms-5 border '>Dark <FaToggleOff className='fs-3'></FaToggleOff> </Button>
+
+                                </>
+                                :
+                                <Button variant="dark"
+                                    className='ms-5 border '>Light <FaToggleOn className='fs-3'></FaToggleOn></Button>
+                            }
+                        </div>
                         <Nav className="me-auto">
-                            <Link className='text-decoration-none btn btn-light '
+                            <Link className='text-decoration-none btn btn-light ms-3'
                                 to='/courses'>
                                 Courses
                             </Link>
-                            <Link className='text-decoration-none btn btn-light '
+                            <Link className='text-decoration-none btn btn-light ms-3'
                                 to='/blog' >Blog</Link>
 
-                            <Link className='text-decoration-none btn btn-light '
+                            <Link className='text-decoration-none btn btn-light ms-3'
                                 to='/faq' >FAQ</Link>
+
                         </Nav>
                         <Nav>
+
                             <Link className='text-decoration-none btn btn-light '
                                 to='/login'>
                                 Login

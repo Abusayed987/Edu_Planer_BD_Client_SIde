@@ -6,10 +6,10 @@ const Home = () => {
     return (
         <div className='container d-flex align-items-center'>
             <div>
-                <h1 className=' heading'>Prepare your <br /> own learning and start the journey
+                <h1 className=' heading'>Prepare your <br /> Own learning and start the journey !
                 </h1>
                 <h3 className='courseBtn'>
-                    let's Explore our <Link to='/courses'>Courses...</Link>
+                    Let's Explore our <Link to='/courses'>Courses...</Link>
                 </h3>
             </div>
             <div >
