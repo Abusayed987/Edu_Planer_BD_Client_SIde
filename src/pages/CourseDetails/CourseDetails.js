@@ -10,7 +10,7 @@ const ref = React.createRef();
 const CourseDetails = () => {
     const courseDetail = useLoaderData()
     const { picture, course_description, course_title, price, teacher_name } = courseDetail
-    console.log(courseDetail);
+    // console.log(courseDetail);
 
 
     return (

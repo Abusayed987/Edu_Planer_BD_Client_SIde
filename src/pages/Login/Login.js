@@ -3,15 +3,24 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-// import { AuthContext } from '../../../Contexts/AuthProvideer/AuthProvider';
-// import { toast } from 'react-hot-toast';
+
+import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
+
+
+const googleProvider = new GoogleAuthProvider()
 
 const Login = () => {
-    // const navigate = useNavigate();
-    // const location = useLocation();
-    // const from = location.state?.from?.pathname || '/'
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
-    // const { logInWithEmailAndPass, setLoading } = useContext(AuthContext)
+    const {
+        logInWithEmailAndPass,
+        setLoading,
+        googleLogin
+    } = useContext(AuthContext)
 
     const handleSubmitLogin = event => {
         event.preventDefault()
@@ -21,24 +30,34 @@ const Login = () => {
         console.log(form, email, password);
 
 
-        // logInWithEmailAndPass(email, password)
-        //     .then((result) => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         form.reset()
-        //         if (user.emailVerified) {
-        //             navigate(from, { replace: true })
-        //         }
-        //         else {
-        //             toast.error('Your Email is not verified, Please verified your email address.')
-        //         }
-        //     })
-        //     .catch((e) => console.error('e: ', e))
-        //     .finally(() => {
-        //         setLoading(false)
-        //     })
+        logInWithEmailAndPass(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                form.reset()
+                if (user.emailVerified) {
+                    navigate(from, { replace: true })
+                }
+                else {
+                    toast.error('Your Email is not verified, Please verified your email address.')
+                }
+            })
+            .catch((e) => {
+                toast.error(e.message)
+                console.error('e: ', e)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
-
+    const handleGoogleLogin = () => {
+        googleLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
     return (
         <div className='w-50 mx-auto mt-4'>
             <Form onSubmit={handleSubmitLogin}>
@@ -67,6 +86,7 @@ const Login = () => {
             </div> <br />
             <div className='text-center '>
                 <Button variant='outline-warning'
+                    onClick={handleGoogleLogin}
                     className='m-3'>
                     Login with <br />
                     <img width={'30px'} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGjwH1vlzVXAR6VFKNiKyf37qHlN_gLk0w9g&usqp=CAU" alt="" />
@@ -77,7 +97,6 @@ const Login = () => {
                     <img width={'30px'} src="https://banner2.cleanpng.com/20180326/eye/kisspng-github-computer-icons-logo-github-5ab8a338143da0.8375508315220498480829.jpg" alt="" />
                 </Button>
             </div>
-
             <br /><br /><br />
             <br /><br /><br />
         </div>

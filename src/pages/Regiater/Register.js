@@ -5,14 +5,17 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 import { toast } from 'react-hot-toast';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 
+const googleProvider = new GoogleAuthProvider()
 
 const Register = () => {
     const {
         createUser,
         updateUserProfile,
         emailVerification,
+        googleLogin,
     } = useContext(AuthContext)
 
     const [accepted, setAccepted] = useState(false)
@@ -28,10 +31,10 @@ const Register = () => {
         const confirmPass = form.confirmPass.value;
         console.log(form, name, photoURL, email, password, confirmPass);
         if (password.length < 6) {
-            return alert('Password Should be 6 characters')
+            return toast.error('Password Should be 6 characters')
         }
         if (password !== confirmPass) {
-            return alert("Password didn't Match")
+            return toast.error("Password didn't Match")
         }
 
         createUser(email, password)
@@ -62,7 +65,14 @@ const Register = () => {
             .then(() => { })
             .catch((e) => console.error(e))
     }
-
+    const handleGoogleLogin = () => {
+        googleLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                // console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
 
     const handleCheckbox = event => {
         setAccepted(event.target.checked);
@@ -107,6 +117,19 @@ const Register = () => {
                 </Form.Text>
             </Form>
             <p>Already have an Account? <Link style={{ textDecoration: 'none' }} to='/login'>Please Login</Link></p>
+            <div className='text-center '>
+                <Button variant='outline-warning'
+                    onClick={handleGoogleLogin}
+                    className='m-3'>
+                    Login with <br />
+                    <img width={'30px'} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGjwH1vlzVXAR6VFKNiKyf37qHlN_gLk0w9g&usqp=CAU" alt="" />
+                </Button>
+                <Button variant='outline-secondary'
+                    className='m-3'>
+                    Login with <br />
+                    <img width={'30px'} src="https://banner2.cleanpng.com/20180326/eye/kisspng-github-computer-icons-logo-github-5ab8a338143da0.8375508315220498480829.jpg" alt="" />
+                </Button>
+            </div>
         </div>
     );
 };

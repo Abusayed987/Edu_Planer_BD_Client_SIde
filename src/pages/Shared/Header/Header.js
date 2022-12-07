@@ -4,19 +4,25 @@ import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 
 
-const Header = () => {
-    const { user } = useContext(AuthContext)
 
+const Header = () => {
+    const { user, logout } = useContext(AuthContext)
+    // console.log(user.displayName);
     let [theme, setTheme] = useState(true);
 
     const handleThemeChange = () => {
         return setTheme(!theme);
+    }
+    const handleLogout = () => {
+        logout()
+            .then(() => { })
+            .catch(e => console.error(e))
     }
     return (
         <div>
@@ -56,15 +62,26 @@ const Header = () => {
 
                         </Nav>
                         <Nav>
-                            {/* <Link>{user.disPlayName}</Link> */}
-                            <Link className='text-decoration-none btn btn-light '
-                                to='/login'>
-                                Login
-                            </Link>
-                            <Link className='text-decoration-none btn btn-light '
-                                to='/register'>
-                                Register
-                            </Link>
+                            <p>{user?.displayName}</p>
+                            {user?.uid ?
+
+                                <Button className='text-decoration-none btn btn-light '
+                                    onClick={handleLogout}
+                                >
+                                    Logout
+                                </Button>
+                                :
+                                <>
+                                    <Link className='text-decoration-none btn btn-light '
+                                        to='/login'>
+                                        Login
+                                    </Link>
+                                    <Link className='text-decoration-none btn btn-light '
+                                        to='/register'>
+                                        Register
+                                    </Link>
+                                </>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
