@@ -4,7 +4,9 @@ import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-
+import { FaSignOutAlt } from 'react-icons/fa';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
@@ -19,11 +21,18 @@ const Header = () => {
     const handleThemeChange = () => {
         return setTheme(!theme);
     }
+
     const handleLogout = () => {
         logout()
             .then(() => { })
             .catch(e => console.error(e))
     }
+
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            {user?.displayName}
+        </Tooltip>
+    );
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -62,14 +71,28 @@ const Header = () => {
 
                         </Nav>
                         <Nav>
-                            <p>{user?.displayName}</p>
-                            {user?.uid ?
 
-                                <Button className='text-decoration-none btn btn-light '
-                                    onClick={handleLogout}
-                                >
-                                    Logout
-                                </Button>
+
+                            {user?.photoURL ?
+                                <>
+                                    <OverlayTrigger
+                                        placement="left"
+                                        delay={{ show: 0, hide: 200 }}
+                                        overlay={renderTooltip}
+                                    >
+                                        <img
+                                            style={{ 'height': '45px', 'borderRadius': '50px', 'marginRight': '10px' }}
+                                            src={user?.photoURL}
+                                            alt="img"
+                                        />
+                                    </OverlayTrigger>
+                                    <Button className='text-decoration-none btn btn-light '
+                                        onClick={handleLogout}
+                                    // to='/'
+                                    >
+                                        Logout <FaSignOutAlt className='text-danger'></FaSignOutAlt>
+                                    </Button>
+                                </>
                                 :
                                 <>
                                     <Link className='text-decoration-none btn btn-light '

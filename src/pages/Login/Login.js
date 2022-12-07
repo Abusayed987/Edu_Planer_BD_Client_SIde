@@ -57,6 +57,8 @@ const Login = () => {
         googleLogin(googleProvider)
             .then(result => {
                 const user = result.user;
+                console.log(user);
+                // setUser(user)
                 navigate(from, { replace: true })
             })
             .catch(error => console.error(error))
