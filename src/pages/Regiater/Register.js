@@ -2,17 +2,18 @@ import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
-// import { AuthContext } from '../../../Contexts/AuthProvideer/AuthProvider';
-// import { toast } from 'react-hot-toast';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+
+import { toast } from 'react-hot-toast';
 
 
 
 const Register = () => {
-    // const {
-    //     createUser,
-    //     updateUserProfile,
-    //     emailVerification
-    // } = useContext(AuthContext)
+    const {
+        createUser,
+        updateUserProfile,
+        emailVerification,
+    } = useContext(AuthContext)
 
     const [accepted, setAccepted] = useState(false)
 
@@ -33,34 +34,34 @@ const Register = () => {
             return alert("Password didn't Match")
         }
 
-        // createUser(email, password)
-        //     .then((result) => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         form.reset()
-        //         handleUpdateUserProfile(name, photoURL)
-        //         handleEmailVerification();
-        //         toast.success('Please verify your email address,before login!')
-        //     })
-        //     .catch((e) => console.error('e: ', e))
+        createUser(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                form.reset()
+                handleUpdateUserProfile(name, photoURL)
+                handleEmailVerification();
+                toast.success('Please verify your email address,before login!')
+            })
+            .catch((e) => console.error('e: ', e))
     }
 
-    // const handleEmailVerification = () => {
-    //     emailVerification()
-    //         .then(() => { })
-    //         .catch(e => console.error(e))
-    // }
+    const handleEmailVerification = () => {
+        emailVerification()
+            .then(() => { })
+            .catch(e => console.error(e))
+    }
 
 
-    // const handleUpdateUserProfile = (name, photoURL) => {
-    //     const profile = {
-    //         displayName: name,
-    //         photoURL: photoURL
-    //     }
-    //     updateUserProfile(profile)
-    //         .then(() => { })
-    //         .catch((e) => console.error(e))
-    // }
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch((e) => console.error(e))
+    }
 
 
     const handleCheckbox = event => {

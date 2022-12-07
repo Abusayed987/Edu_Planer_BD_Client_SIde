@@ -5,12 +5,14 @@ import Header from '../pages/Shared/Header/Header';
 
 const Main = () => {
     return (
-        <div>
+        <div style={{ position: 'relative', minHeight: '100vh' }}>
             <Header></Header>
             <Outlet></Outlet>
             <br />
             <br />
-            <Footer></Footer>
+            <div style={{ position: 'absolute', bottom: '0', width: '100%', height: '2.5rem', }}>
+                <Footer ></Footer>
+            </div>
         </div>
     );
 };

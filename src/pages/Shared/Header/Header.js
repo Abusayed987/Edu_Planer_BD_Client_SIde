@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 import { Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -6,10 +6,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 
 
 const Header = () => {
+    const { user } = useContext(AuthContext)
+
     let [theme, setTheme] = useState(true);
 
     const handleThemeChange = () => {
@@ -53,7 +56,7 @@ const Header = () => {
 
                         </Nav>
                         <Nav>
-
+                            {/* <Link>{user.disPlayName}</Link> */}
                             <Link className='text-decoration-none btn btn-light '
                                 to='/login'>
                                 Login
