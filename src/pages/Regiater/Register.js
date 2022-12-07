@@ -44,7 +44,7 @@ const Register = () => {
                 form.reset()
                 handleUpdateUserProfile(name, photoURL)
                 handleEmailVerification();
-                toast.success('Please verify your email address,before login!')
+                toast.success("Please verify your email address,before login! , Don't worry if the email goes to the spam folder.")
             })
             .catch((e) => {
                 toast.error(e.message)
