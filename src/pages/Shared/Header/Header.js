@@ -86,12 +86,12 @@ const Header = () => {
                                             alt="img"
                                         />
                                     </OverlayTrigger>
-                                    <Button className='text-decoration-none btn btn-light '
+                                    <Link className='text-decoration-none btn btn-light '
                                         onClick={handleLogout}
-                                    // to='/'
+                                        to='/'
                                     >
                                         Logout <FaSignOutAlt className='text-danger'></FaSignOutAlt>
-                                    </Button>
+                                    </Link>
                                 </>
                                 :
                                 <>
